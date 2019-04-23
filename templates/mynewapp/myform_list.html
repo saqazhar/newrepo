@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Base</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  </head>
+
+  <body>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="navbar-nav">
+
+        {# Django Home Link / Admin Link / Register Link#}
+        <a class="navbar-brand" href="{% url 'myform_list' %}">DJANGO</a>
+        <a class="nav-item nav-link" href="{% url 'myform_create' %}">Enter details in Form</a>
+
+
+      </div>
+    </nav>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Address</th>
+<th>Phone</th>
+<th>Actions</th>
+</tr>
+</thead>
+
+
+<tbody>
+{% for contact in myform_list %}
+<tr>
+<td>{{ contact.name }}</td>
+<td>{{ contact.email }}</td>
+<td>{{ contact.address }}</td>
+<td>
+<a  href="{% url "myform_details"  contact.id  %}">details</a>
+<a  href="{% url "myform_delete"  contact.id  %}">delete</a>
+  <a  href="{% url "myform_update"  contact.id  %}">update</a>
+</td>
+</tr>
+</tbody>
+
+{% endfor %}
+
+
+    </body>
